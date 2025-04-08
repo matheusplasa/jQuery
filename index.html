@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tarefas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --dark-blue: #1e40af;
+            --light-blue: #dbeafe;
+            --text-dark: #1f2937;
+            --text-light: #f9fafb;
+            --gray-light: #e5e7eb;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        body {
+            background-color: #f8fafc;
+            color: var(--text-dark);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+        }
+        
+        h1 {
+            color: var(--primary-blue);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+        
+        .form-container {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        #nome-tarefa {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--gray-light);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+        
+        #nome-tarefa:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        button[type="submit"] {
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        button[type="submit"]:hover {
+            background-color: var(--dark-blue);
+        }
+        
+        #lista-tarefas {
+            list-style: none;
+        }
+        
+        #lista-tarefas li {
+            padding: 1rem;
+            border-bottom: 1px solid var(--gray-light);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.2s;
+        }
+        
+        #lista-tarefas li:hover {
+            background-color: var(--light-blue);
+        }
+        
+        #lista-tarefas li::before {
+            content: "•";
+            color: var(--primary-blue);
+            font-weight: bold;
+        }
+        
+        #lista-tarefas li.completed {
+            text-decoration: line-through;
+            color: #6b7280;
+        }
+        
+        #lista-tarefas li.completed::before {
+            content: "✓";
+            color: #10b981;
+        }
+        
+        .empty-state {
+            text-align: center;
+            color: #6b7280;
+            padding: 2rem;
+            display: none;
+        }
+        
+        .empty-state i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--gray-light);
+        }
+        
+        .empty-state.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Tarefas</h1>
+        
+        <div class="form-container">
+            <input type="text" id="nome-tarefa" placeholder="Digite uma nova tarefa..." autofocus>
+            <button type="submit" id="btn-adicionar">
+                <i class="fas fa-plus"></i> Adicionar
+            </button>
+        </div>
+        
+        <ul id="lista-tarefas"></ul>
+        
+        <div class="empty-state">
+            <i class="fas fa-clipboard-list"></i>
+            <p>Sua lista de tarefas está vazia</p>
+            <p>Adicione uma tarefa para começar</p>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
